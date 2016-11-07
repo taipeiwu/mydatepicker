@@ -23,6 +23,7 @@ export class MyDatePicker implements OnChanges {
     @Input() defaultMonth:string;
     @Input() selDate:string;
     @Output() dateChanged:EventEmitter<Object> = new EventEmitter();
+	@Output() dateStringChanged:EventEmitter<Object> = new EventEmitter();
 
     showSelector: boolean = false;
     visibleMonth: IMyMonth = {monthTxt: '', monthNbr: 0, year: 0};
@@ -142,6 +143,7 @@ export class MyDatePicker implements OnChanges {
             }
             else {
                 this.invalidDate = true;
+				this.dateStringChanged.emit({dateString:event.target.value});
             }
         }
     }
